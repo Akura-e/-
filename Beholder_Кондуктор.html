@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beholder: Conductor - Официальный сайт</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#ff6b00',secondary:'#333333'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Press Start 2P', cursive;
+background-color: #0a0a0a;
+color: #e0e0e0;
+}
+.pixel-border {
+box-shadow: 0 0 0 2px #333, 0 0 0 4px #555;
+}
+.hero-section {
+background-image: url('https://files.vgtimes.ru/posts/2024-12/beholder-conductor-prohozhdenie-i-sovety-po-igre-117627.webp?1745853799');
+background-size: cover;
+background-position: center;
+position: relative;
+}
+.hero-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0, 0, 0, 0.7);
+}
+.nav-link {
+position: relative;
+transition: all 0.3s ease;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: -4px;
+left: 0;
+width: 0;
+height: 2px;
+background-color: #ff6b00;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.character-card {
+transition: all 0.3s ease;
+cursor: pointer;
+}
+.character-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+}
+.modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8);
+z-index: 1000;
+overflow: auto;
+animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+.modal-content {
+background-color: #1a1a1a;
+margin: 10% auto;
+padding: 20px;
+width: 80%;
+max-width: 800px;
+border: 2px solid #ff6b00;
+animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+from { transform: translateY(-50px); opacity: 0; }
+to { transform: translateY(0); opacity: 1; }
+}
+.close-button {
+float: right;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+}
+.feature-card {
+transition: all 0.3s ease;
+}
+.feature-card:hover {
+transform: scale(1.02);
+}
+</style>
+</head>
+<body class="min-h-screen">
+<header class="w-full bg-black/90 fixed top-0 z-50">
+<nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+<div class="flex items-center">
+<h1 class="text-primary text-2xl font-['Press Start 2P']">Beholder</h1>
+<span class="ml-2 text-white text-xl">Conductor</span>
+</div>
+<div class="hidden md:flex space-x-6">
+<a href="#about" class="nav-link text-sm text-gray-300 hover:text-primary">Об игре</a>
+<a href="#features" class="nav-link text-sm text-gray-300 hover:text-primary">Особенности</a>
+<a href="#characters" class="nav-link text-sm text-gray-300 hover:text-primary">Персонажи</a>
+<a href="#gallery" class="nav-link text-sm text-gray-300 hover:text-primary">Галерея</a>
+<a href="directives.html"class="nav-link text-sm text-gray-300 hover:text-primary">Директивы</a>
+</div>
+<div class="md:hidden w-8 h-8 flex items-center justify-center text-white cursor-pointer" id="mobile-menu-button">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</nav>
+<div id="mobile-menu" class="hidden md:hidden bg-black/95 w-full">
+<div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+<a href="#about" class="text-sm text-gray-300 hover:text-primary">Об игре</a>
+<a href="#features" class="text-sm text-gray-300 hover:text-primary">Особенности</a>
+<a href="#characters" class="text-sm text-gray-300 hover:text-primary">Персонажи</a>
+<a href="#gallery" class="text-sm text-gray-300 hover:text-primary">Галерея</a>
+</div>
+</div>
+</header>
+<main class="pt-16">
+<section class="hero-section w-full h-screen flex items-center justify-center relative">
+<div class="container mx-auto px-4 z-10">
+<div class="max-w-3xl mx-auto text-center">
+<h1 class="text-4xl md:text-5xl text-white mb-6">Добро пожаловать на борт «Поставщика Решимости»!</h1>
+<p class="text-lg md:text-xl text-gray-300 mb-8">Станьте старшим кондуктором легендарного поезда и решайте судьбы пассажиров в мрачном мире тоталитарного государства.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a href="https://store.steampowered.com/app/2825530/Beholder_Conductor/" target="_blank" class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap hover:bg-primary/90 transition-all">Купить игру</a>
+<a href="https://vkvideo.ru/video-114903349_456239121?ref_domain=yastatic.net" target="_blank" class="bg-transparent border-2 border-white text-white px-8 py-3 !rounded-button whitespace-nowrap hover:bg-white/10 transition-all">Смотреть трейлер</a>
+</div>
+</div>
+</div>
+</section>
+<section id="about" class="py-20 bg-gray-900">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl text-center text-white mb-12">О игре</h2>
+<div class="max-w-4xl mx-auto">
+<p class="text-gray-300 mb-6">
+Вы назначены старшим кондуктором легендарного поезда, который рады видеть в своём городе все граждане необъятной страны. Ваши обязанности — поддержание порядка в выделенном вам вагоне и предоставление помощи пассажирам в пути. Ваши инструменты — доносительство, запугивание, обыск и высадка с рейса. Не забывайте: кондуктор всегда прав.
+</p>
+<p class="text-gray-300 mb-6">
+Beholder: Conductor — это новая игра в серии Beholder, где вы становитесь кондуктором поезда в тоталитарном государстве. Ваша задача — следить за пассажирами, докладывать о подозрительной активности и принимать сложные моральные решения, которые повлияют на судьбы многих людей.
+</p>
+<p class="text-gray-300">
+Посетите различные станции и отдалённые уголки страны. Примите тяжёлые решения, от которых будут зависеть судьбы пассажиров и ваших коллег. Только вы определяете, каким человеком вы окажетесь в конце пути!
+</p>
+</div>
+</div>
+</section>
+<section id="features" class="py-20 bg-black">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl text-center text-white mb-12">Особенности игры</h2>
+<div class="container mx-auto px-4">
+<div class="max-w-4xl mx-auto space-y-12">
+<div class="feature-section">
+<h3 class="text-xl text-primary mb-4">Контролируйте пассажиров</h3>
+<p class="text-gray-300">
+Внимательно следите за всеми, кто входит в вагон, и решайте как поступать с безбилетниками. Наблюдайте и доносите обо всех подозрительных, несанкционированных и вообще любых действиях пассажиров. Обыскивайте багаж и вызывайте полицейских в случае обнаружения запрещенных вещей.
+</p>
+<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2825530/extras/1.gif?t=1746451179" alt="Контроль пассажиров" class="w-full h-auto rounded">
+</div>
+<div class="feature-section">
+<h3 class="text-xl text-primary mb-4">Продвигайтесь по составу</h3>
+<p class="text-gray-300">
+Получите пропуск в вагон-ресторан или VIP-купе и вагоны, где путешествуют высшие чины и крупные промышленники. Следите за своими коллегами и докладывайте о получении взяток или провозе товаров из запретного списка. Министерство не оставит вашу преданность незамеченной.
+</p>
+<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2825530/extras/2.gif?t=1746451179" alt="Продвижение по составу" class="w-full h-auto rounded">
+</div>
+<div class="feature-section">
+<h3 class="text-xl text-primary mb-4">Выполняйте тайные задания</h3>
+<p class="text-gray-300">
+Заслужите доверие руководства, чтобы получать специальные поручения — их секретность будет зависеть от вашей лояльности, а выполнение поощряться премией или даже повышением. Вы также встретите контрабандистов — перевозка их посылок по пути следования рискованна, но прибыльна.
+</p>
+<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2825530/extras/3.gif?t=1746451179" alt="Тайные задания" class="w-full h-auto rounded">
+</div>
+</div>
+</div>
+</section>
+<section id="characters" class="py-20 bg-gray-900">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl text-center text-white mb-12">Персонажи</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="wilson">
+<img src="./img/2025-05-22_18-12-22.png" alt="Уилстон Смит" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Уилстон Смит</h3>
+<p class="text-gray-300">Главный герой игры,  кондуктор 3-го класс поезда «Поставщик Решимости».</p>
+</div>
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="john">
+<img src="./img/2025-05-22_18-17-25.png" alt="Джек" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Джек</h3>
+<p class="text-gray-300"> Кот Уилстона Смита. Обладает своим характером и помогает главному герою.</p>
+</div>
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="sargas">
+<img src="./img/2025-05-22_18-11-16.png" alt="Майор Саргас" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Майор Саргас</h3>
+<p class="text-gray-300">серьёзный и ответственный человек. Майор представлен строгим руководителем, сурово наказывающим провинившихся подчинённых.</p>
+</div>
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="peter">
+<img src="./img/2025-05-22_18-17-00.png" alt="Петер" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Петер</h3>
+<p class="text-gray-300">Кондуктор 2 класса, коллега Уилстона. Опытный работник, который знает все тонкости работы на поезде и может дать полезные советы.</p>
+</div>
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="bart">
+<img src="./img/2025-05-22_18-11-36.png" alt="Барт" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Барт</h3>
+<p class="text-gray-300">Бывший кондуктор 3 класса, ныне получивший повышение до 1 класса.</p>
+</div>
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="other">
+<img src="./img/2025-05-22_18-33-36.png" alt="Другие персонажи" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Другие персонажи</h3>
+<p class="text-gray-300">В игре вы встретите множество других персонажей — пассажиров, чиновников, контрабандистов и простых граждан, каждый со своей историей.</p>
+</div>
+</div>
+<div class="text-center mt-10">
+  <a href="characters.html" class="inline-block bg-primary text-white px-6 py-3 rounded-button text-lg hover:bg-orange-600 transition">
+    Персонажи игры
+  </a>
+</div>
+</div>
+</section>
+<section id="gallery" class="py-20 bg-black">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl text-center text-white mb-12">Галерея</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="gallery-item overflow-hidden rounded">
+<img src="https://media1.tenor.com/m/go6RcSYEfTsAAAAC/beholder-conditioning.gif" alt="Интерьер поезда" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+</div>
+<div class="gallery-item overflow-hidden rounded">
+<img src="https://media1.tenor.com/m/_gIPcujnyTAAAAAC/beholder-conductor.gif" alt="Проверка билетов" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+</div>
+<div class="gallery-item overflow-hidden rounded">
+<img src="https://images.steamusercontent.com/ugc/13428864640885941736/7325FA285E3F3F6199B01A098127EDA0EE9FDB94/?imw=640&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"  class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+</div>
+<div class="gallery-item overflow-hidden rounded">
+<img src="https://images.steamusercontent.com/ugc/11801960624214300616/002DD2E234BB7AACB01F94686DC689037F331B10/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+</div>
+<div class="gallery-item overflow-hidden rounded">
+<img src="https://images.steamusercontent.com/ugc/23189918858621628/459E31C2310DF6D1E150434D08A8BE45AA7520C1/?imw=1024&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"  class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+</div>
+<div class="gallery-item overflow-hidden rounded">
+<img src="https://images.steamusercontent.com/ugc/17878178813989768567/D375E95238E9F0598A4F4BF1A7B5C2218D6440E3/?imw=1920&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300">
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-black py-12">
+<div class="container mx-auto px-4">
+<div class="flex flex-col md:flex-row justify-between items-center mb-8">
+<div class="flex items-center mb-6 md:mb-0">
+<h2 class="text-primary text-2xl font-['Press Start 2P']">Beholder</h2>
+<span class="ml-2 text-white text-xl">Conductor</span>
+</div>
+<div class="flex space-x-6">
+<a href="https://store.steampowered.com/app/2825530/Beholder_Conductor/" target="_blank" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-steam-fill ri-lg text-white"></i>
+</a>
+<a href="https://x.com/Beholder_Game?lang=ru" target="_blank" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-twitter-x-fill ri-lg text-white"></i>
+</a>
+<a href="https://www.youtube.com/@alawar" target="_blank" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+<i class="ri-youtube-fill ri-lg text-white"></i>
+</a>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Alawar Premium. Все права защищены.</p>
+</div>
+</div>
+</div>
+</footer>
+<div id="character-modal" class="modal">
+<div class="modal-content">
+<span class="close-button">&times;</span>
+<div class="flex flex-col md:flex-row gap-6">
+<div class="md:w-1/3">
+<img id="modal-image" src="" alt="" class="w-full h-auto rounded">
+</div>
+<div class="md:w-2/3">
+<h3 id="modal-name" class="text-2xl text-primary mb-4"></h3>
+<p id="modal-description" class="text-gray-300 mb-6"></p>
+<div id="modal-details" class="text-gray-400"></div>
+</div>
+</div>
+</div>
+</div>
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+mobileMenuLinks.forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+});
+});
+});
+</script>
+<script id="character-modal-script">
+document.addEventListener('DOMContentLoaded', function() {
+const modal = document.getElementById('character-modal');
+const closeButton = document.querySelector('.close-button');
+const modalImage = document.getElementById('modal-image');
+const modalName = document.getElementById('modal-name');
+const modalDescription = document.getElementById('modal-description');
+const modalDetails = document.getElementById('modal-details');
+const characterData = {
+'wilson': {
+name: 'Уилстон Смит',
+image: './img/photo_5294181537971040486_y.jpg',
+description: 'Главный герой игры,  кондуктор 3-го класс поезда «Поставщик Решимости».',
+details: 'Уинстон показывает себя спокойным и учтивым человеком, как правило не стремящегося лезть в чужие дела. Неразговорчив и исполнителен в работе. Смит одинок и поэтому, он хочет увидеться со своей семьёй, когда узнал, что они смогли выжить.'
+},
+'john': {
+name: 'Джек',
+image: './img/photo_5294181537971040487_x.jpg',
+description: 'Кот Уилстона Смита',
+details: 'Кот изначально представлен, как жалкое и беспомощное животное, которому необходим уход и уют. Он готов давить на жалость, чтобы его смогли приютить. После того, как его приютят, он привяжется к своему хозяину. Стоит отметить, что у кота имеются собственные предпочтения, которые отчётливо видны при выборе ему имени.'
+},
+'sargas': {
+name: 'Майор Саргас',
+image: './img/photo_5294181537971040484_y.jpg',
+description: 'Высокопоставленный офицер, отвечающий за безопасность поезда.',
+details: 'Cтрогий и требовательный руководитель, который следит за соблюдением всех правил и директив. Он не терпит неповиновения и всегда готов наказать нарушителей. Однако, за маской преданного служителя режима может скрываться человек с собственными целями и амбициями.'
+},
+'peter': {
+name: 'Петер',
+image: './img/photo_5294181537971040483_y.jpg',
+description: 'Кондуктор 2 класса',
+details: 'Петер - доброжелательный и исполнительный человек. Зная многие тонкости работы проводника, он инструктирует главного героя на протяжении всего начала игры, сопровождая его и после. Несмотря на это, проводник часто совершает ошибки и проколы, от чего находится "на карандаше" у начальства. Жизнерадостность Петера отчасти объясняется его радостью от уже пережитых им ужасов войны и нахождения сейчас в безопасном месте. Тем не менее, страдания от посттравматического синдрома дают о себе знать каждую ночь, мучая проводника кошмарами..'
+},
+'bart': {
+name: 'Барт',
+image: './img/photo_5294181537971040485_x.jpg',
+description: 'Судя по всему, Барт работает в поезде "Поставщик Решимости" уже долгое время.',
+details: 'Барт представлен опытным, хоть и несколько рассеянным проводником поезда. Знает о многих тонкостях работы проводника, но ввиду возраста ему тяжело исполнять должностные обязанности, от чего он засыпает прямо на рабочем месте. Несмотря на это, Барт показан патриотично настроенным гражданином, например, гордясь работой поезда.'
+},
+'other': {
+name: 'Другие персонажи',
+image: './img/2025-05-22_18-34-13.png',
+description: 'В игре вы встретите множество других персонажей — пассажиров, чиновников, контрабандистов и простых граждан.',
+details: 'Мир Beholder: Conductor населен множеством интересных персонажей. Каждый пассажир имеет свою историю и мотивы. Вы встретите высокопоставленных чиновников, богатых промышленников, контрабандистов, диссидентов и обычных граждан. Взаимодействие с ними и принятые решения будут влиять на развитие сюжета и судьбу главного героя.'
+}
+};
+const characterCards = document.querySelectorAll('.character-card');
+characterCards.forEach(card => {
+card.addEventListener('click', function() {
+const characterId = this.getAttribute('data-character');
+const character = characterData[characterId];
+modalImage.src = character.image;
+modalImage.alt = character.name;
+modalName.textContent = character.name;
+modalDescription.textContent = character.description;
+modalDetails.textContent = character.details;
+modal.style.display = 'block';
+document.body.style.overflow = 'hidden';
+});
+});
+closeButton.addEventListener('click', function() {
+modal.style.display = 'none';
+document.body.style.overflow = 'auto';
+});
+window.addEventListener('click', function(event) {
+if (event.target === modal) {
+modal.style.display = 'none';
+document.body.style.overflow = 'auto';
+}
+});
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beholder: Conductor - Официальный сайт</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#ff6b00',secondary:'#333333'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Press Start 2P', cursive;
+background-color: #0a0a0a;
+color: #e0e0e0;
+}
+.pixel-border {
+box-shadow: 0 0 0 2px #333, 0 0 0 4px #555;
+}
+.hero-section {
+background-image: url('https://files.vgtimes.ru/posts/2024-12/beholder-conductor-prohozhdenie-i-sovety-po-igre-117627.webp?1745853799');
+background-size: cover;
+background-position: center;
+position: relative;
+}
+.hero-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0, 0, 0, 0.7);
+}
+.nav-link {
+position: relative;
+transition: all 0.3s ease;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: -4px;
+left: 0;
+width: 0;
+height: 2px;
+background-color: #ff6b00;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.character-card {
+transition: all 0.3s ease;
+cursor: pointer;
+}
+.character-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+}
+.modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8);
+z-index: 1000;
+overflow: auto;
+animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+.modal-content {
+background-color: #1a1a1a;
+margin: 10% auto;
+padding: 20px;
+width: 80%;
+max-width: 800px;
+border: 2px solid #ff6b00;
+animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+from { transform: translateY(-50px); opacity: 0; }
+to { transform: translateY(0); opacity: 1; }
+}
+.close-button {
+float: right;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+}
+.feature-card {
+transition: all 0.3s ease;
+}
+.feature-card:hover {
+transform: scale(1.02);
+}
+</style>
+</head>
+<body class="min-h-screen">
+
+<div class="container mx-auto py-12 px-4">
+<div class="grid grid-cols-1 gap-6">
+<div class="pixel-border bg-secondary p-6 rounded">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl text-primary">Текущие директивы</h3>
+</div>
+<div class="space-y-4">
+<!-- Директива №6037 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6037</span>
+<span class="text-xs text-gray-400">1 Сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено укрывать преступников</h4>
+<p class="text-sm text-gray-400">Любое пособничество преступникам карается по всей строгости закона.</p>
+</div>
+</div>
+</div>
+<!-- Директива №6038 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6038</span>
+<span class="text-xs text-gray-400">1 Сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено производство агитационных плакатов</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Свернутая ткань</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6039 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6039</span>
+<span class="text-xs text-gray-400">1 Сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Все яблоки подлежат немедленному уничтожению!</h4>
+<p class="text-sm text-gray-400">Хранить и употреблять их запрещено!</p>
+<div class="flex items-center space-x-4 mt-2">
+<div class="flex items-center">
+
+<span class="text-sm text-primary">Зеленое яблоко</span>
+</div>
+<div class="flex items-center">
+
+<span class="text-sm text-primary">Красное яблоко</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6040 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6040</span>
+<span class="text-xs text-gray-400">1 Сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено хранение и производство наркотиков</h4>
+<div class="flex items-center space-x-4 mt-2">
+<div class="flex items-center">
+
+<span class="text-sm text-primary">Дешевые наркотики</span>
+</div>
+<div class="flex items-center">
+
+<span class="text-sm text-primary">Антидепрессанты</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6041 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6041</span>
+<span class="text-xs text-gray-400">2 Сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено хранение книг</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Книга Пола Уильямса</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6042 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6042</span>
+<span class="text-xs text-gray-400">2 Сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено распевание песен</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Поет</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6043 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6043</span>
+<span class="text-xs text-gray-400">3 Сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено хранить иностранные деньги</h4>
+<div class="flex items-center mt-2">
+
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6044 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6044</span>
+<span class="text-xs text-gray-400">4 Сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещена иностранная газированная вода</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Иностранная газировка</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6045 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6045</span>
+<span class="text-xs text-gray-400">5 Сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено носить и распространять джинсы!</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Джинсы</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6046 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6046</span>
+<span class="text-xs text-gray-400">6 Сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено хранить иностранные пластинки!</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Зарубежная пластинка</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6047 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6047</span>
+<span class="text-xs text-gray-400">7 сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено плакать и собираться группами более 3 человек вне службы</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Плачет</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6048 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6048</span>
+<span class="text-xs text-gray-400">8 сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено хранить и употреблять рыбу!</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Рыба</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6049 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6049</span>
+<span class="text-xs text-gray-400">9 сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещены разговоры о войне</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Говорит о войне</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6050 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6050</span>
+<span class="text-xs text-gray-400">10 сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено хранение ламп накаливания!</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Лампочка</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6051 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6051</span>
+<span class="text-xs text-gray-400">11 сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещены синие галстуки!</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Синий галстук</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6052 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6052</span>
+<span class="text-xs text-gray-400">12 сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено чтение книг</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Читает книги</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6053 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6053</span>
+<span class="text-xs text-gray-400">14 сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено хранение иностранной соли!</h4>
+<div class="flex items-center mt-2">
+
+<span class="text-sm text-primary">Соль</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Директива №6054 -->
+<div class="bg-black p-4 rounded hover:bg-opacity-70 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex-1">
+<div class="flex items-center mb-2">
+<span class="text-primary text-sm mr-2">№6054</span>
+<span class="text-xs text-gray-400">16 сентября 1984</span>
+</div>
+<h4 class="text-white mb-2">Запрещено хранение резиновых уток.</h4>
+<div class="flex items-center mt-2">
+<span class="text-sm text-primary">Уточка</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+<script>
+window.addEventListener('resize', function() {
+loyaltyChart.resize();
+resourcesChart.resize();
+});
+</script>
+</body>
+</html>

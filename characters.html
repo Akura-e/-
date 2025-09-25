@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beholder: Conductor - Официальный сайт</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#ff6b00',secondary:'#333333'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Press Start 2P', cursive;
+background-color: #0a0a0a;
+color: #e0e0e0;
+}
+.pixel-border {
+box-shadow: 0 0 0 2px #333, 0 0 0 4px #555;
+}
+.hero-section {
+background-image: url('https://files.vgtimes.ru/posts/2024-12/beholder-conductor-prohozhdenie-i-sovety-po-igre-117627.webp?1745853799');
+background-size: cover;
+background-position: center;
+position: relative;
+}
+.hero-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0, 0, 0, 0.7);
+}
+.nav-link {
+position: relative;
+transition: all 0.3s ease;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: -4px;
+left: 0;
+width: 0;
+height: 2px;
+background-color: #ff6b00;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.character-card {
+transition: all 0.3s ease;
+cursor: pointer;
+}
+.character-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+}
+.modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8);
+z-index: 1000;
+overflow: auto;
+animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+.modal-content {
+background-color: #1a1a1a;
+margin: 10% auto;
+padding: 20px;
+width: 80%;
+max-width: 800px;
+border: 2px solid #ff6b00;
+animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+from { transform: translateY(-50px); opacity: 0; }
+to { transform: translateY(0); opacity: 1; }
+}
+.close-button {
+float: right;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+}
+.feature-card {
+transition: all 0.3s ease;
+}
+.feature-card:hover {
+transform: scale(1.02);
+}
+</style>
+</head>
+<body>
+ <section id="characters" class="py-20 bg-gray-900">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl text-center text-white mb-12">Все персонажи игры</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="frenc">
+<img src="./img/2025-06-15_18-58-54.png" alt="Фрэнсис Кентаро" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Фрэнсис Кентаро</h3>
+<p class="text-gray-300">Фрэнсис - харизматичный и красноречивый артист. Хорошо поёт и превосходно играет роли, что доказывают не только слова других персонажей и его самого, но видимый в нём талант. Тем не менее, в диалогах может вести себя подло и грубо, как например было то, как он обманул одну из официанток. Несмотря на то, что сам Фрэнсис хорошо поёт патриотические песни, он их презирает и считает "чушью".</p>
+</div>
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="martin">
+<img src="./img/2025-06-15_19-41-04.png" alt="Мартин Краузе" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Мартин Краузе</h3>
+<p class="text-gray-300"> Мартин - внимательный и проворный человек. Ловко уходя от неудобных вопросов и ситуаций, он создаёт интригу для главного героя, привлекая его к работе на свою организацию. Краузе разумен и хитёр, а потому всегда подстраивает окружение под себя и свои нужды, дабы всегда оставаться в преимуществе.</p>
+</div>
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="mydra">
+<img src="./img/2025-06-15_18-49-58.png" alt="Йозеф Мудра" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Йозеф Мудра</h3>
+<p class="text-gray-300">Незадолго до событии игры, Йозефа отправили в Вальверде для заключения мирных переговоров, однако, по распоряжению Мудрого Вождя, на Йозефа должно было быть совершено покушение для эскалации конфликта между Великим Государством и Вальверде. Также известно, что Йозеф вступил в тайную интимную связь с Евой Грей.</p>
+</div>
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="eva">
+<img src="./img/2025-06-15_19-16-59.png" alt="Ева Грей" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Ева Грей</h3>
+<p class="text-gray-300">Ева - прагматичная и чувствительная женщина. Она предпочитает вести тайную любовь с Йозефом, чтобы ощутить свои истинные эмоции. Ей не нравится слушать военные песни .</p>
+</div>
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="vaclav">
+<img src="./img/2025-06-15_19-13-29.png" alt="Вацлав Капек" class="w-full h-64 object-cover object-top rounded mb-4">
+<h3 class="text-xl text-primary mb-2">Вацлав Капек</h3>
+<p class="text-gray-300">Второстепенный пассажир- простой и неуверенный человек. Часто заикается.</p>
+</div>
+ <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_18-52-29 (1).png" alt="Луиза Манишек" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Луиза Манишек</h3>
+        <p class="text-gray-300">Связана с семьёй Манишеков и Шиммеров. Участвует в квестах, может быть арестована или совершить убийство.</p>
+      </div>
+
+      <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_18-53-56.png" alt="Карл Штейн" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Карл Штейн</h3>
+        <p class="text-gray-300">Отец семейства Штейн. В Beholder: Conductor участвует в эпизодической роли.</p>
+      </div>
+
+      <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_18-53-29.png" alt="Анна Штейн" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Анна Штейн</h3>
+        <p class="text-gray-300">Мать семейства. Поддерживает своих детей и супруга. В игре появляется эпизодически.</p>
+      </div>
+
+      <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_18-54-15.png" alt="Патрик Штейн" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Патрик Штейн</h3>
+        <p class="text-gray-300"> Сын Карла. Может участвовать в сюжетных событиях, связанных с вынужденной стоянкой.</p>
+      </div>
+
+      <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_18-53-14.png" alt="Марта Штейн" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Марта Штейн</h3>
+        <p class="text-gray-300">Дочь Карла и Анны. В игре играет роль второстепенного персонажа.</p>
+      </div>
+
+      <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_18-52-29.png" alt="Виктор Бабюх" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Виктор Бабюх</h3>
+        <p class="text-gray-300">Пассажир 3-го класса. Тихий и грубый, склонен к пьянству.</p>
+      </div>
+
+      <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_19-33-40.png" alt="Агата Кужава" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Агата Кужава</h3>
+        <p class="text-gray-300">Грубая и раздражённая няня. Сопровождает Матуша Пьеху к бабушке.</p>
+      </div>
+
+      <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_19-33-28.png" alt="Матуш Пьеха" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Матуш Пьеха</h3>
+        <p class="text-gray-300">Избалованный ребёнок. Путешествует с няней в 3-м классе.</p>
+      </div>
+
+      <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_19-33-07.png" alt="Яков Манишек" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Яков Манишек</h3>
+        <p class="text-gray-300">Муж Луизы. Химик,после остановки поезда на станции Хельмер-пригород, стражи порядка приводят Якова в вагон-тюрьму. Остаётся в поезде до побега.</p>
+      </div>
+       <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_19-14-32.png" alt="Рэйчел Кларк" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Рэйчел Кларк</h3>
+        <p class="text-gray-300">Рэйчел - уверенная и решительная девушка. Она открыто критикует действия властей и выражает своё недовольство по поводу закрытия газеты "Твоя правда".</p>
+      </div>
+
+      <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_19-14-46.png" alt="Ратмир Железняк" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Ратмир Железняк</h3>
+        <p class="text-gray-300">Ратмир - суровый и грубый военный. Он презирает тех, кто оставался в тылу и не служил в армии. Вне этого, он также представлен, как патриотичный человек.</p>
+      </div>
+
+      <div class="character-card bg-black p-6 rounded pixel-border">
+        <img src="./img/2025-06-15_19-15-06.png" alt="Славомир Коваль" class="w-full h-64 object-cover object-top rounded mb-4">
+        <h3 class="text-xl text-primary mb-2">Славомир Коваль</h3>
+        <p class="text-gray-300">Славомир - наглый и нахальный парень. Он излишне самоуверен и не боится никого.</p>
+      </div>
+      <div class="character-card bg-black p-6 rounded pixel-border" data-character="pierre-pribula">
+  <img src="./img/2025-06-15_19-32-41.png" alt="Пьер Прибула" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Пьер Прибула</h3>
+  <p class="text-gray-300">Пьер - грубый и безответственный человек. Он привык к тому, чтобы ждать или требовать, что-либо у других людей и считает, что он никому ничего не должен. Сам Пьер жаден и корыстен, и он готов получить желаемое даже несмотря на то, что это будет иметь малую ценность для него и ради достижения своей цели он пойдёт на подлые поступки. Пьер сильно недолюбливает своего брата за то, что он лучше его. Тем не менее, Пьер искренне считает, что однажды его брат сможет его понять и оценить достойно.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="michelle-schimanska">
+  <img src="./img/2025-06-15_19-17-38.png" alt="Мишель Шиманская" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Мишель Шиманская</h3>
+  <p class="text-gray-300">Мишель - хитрая и заигрывающая женщина. Используя свою красоту и красноречие, она способна убедить людей к сотрудничеству с ней в её беспринципных и рискованных авантюрах. Она ушлая и внимательна, а потому воспользуется ситуацией, которая сможет её обогатить. Нередко, Шиманская ведёт себя кокетливо по отношению к мужчинам.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="stanis-pribula">
+  <img src="./img/2025-06-15_19-32-54.png" alt="Станиш Прибула" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Станиш Прибула</h3>
+  <p class="text-gray-300">Станиш - учтивый и спокойный человек. Он делает неодобрительные выпады в адрес своего брата, называя его "непутёвым" пусть и в мягкой форме. Несмотря на это, он переживает за дальнейшую судьбу своего брата и боится, что его инфантильный взгляд на жизнь может только укрепится после приобретения наследства. Станиш желает того, чтобы однажды его брат смог спокойно с ним поговорить. Прибуле также нравится читать газеты, вспоминая о событиях произошедших спустя долгое время.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="bozhena-chernik">
+  <img src="./img/2025-06-15_19-35-51.png" alt="Божена Черник" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Божена Черник</h3>
+  <p class="text-gray-300">Божена - грустная и тихая старушка, опечаленная смертью своего сына. Несмотря на это, в диалогах ведёт себя, как добрая и вежливая женщина.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="tobias-milik">
+  <img src="./img/2025-06-15_18-56-08.png" alt="Тобиас Милик" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Тобиас Милик</h3>
+  <p class="text-gray-300">Тобиас первично предстаёт перед игроком суровым и патриотичным пассажиром. Однако, позднее он показывает совершенно другую черту своего характера. Он показывает себя, как предприимчивого и целеустремлённого человека, который готов получить выгоду для себя в опасных вылазках.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="lukas-stanishevsky">
+  <img src="./img/2025-06-15_19-32-29.png" alt="Лукаш Станишевский" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Лукаш Станишевский</h3>
+  <p class="text-gray-300">Лукаш - тихий и скромный человек. Хорошо знает о лечении животных и удивляется редкой породы кота Уинстона.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="roza-wojciechowska">
+  <img src="./img/2025-06-15_19-32-15.png" alt="Роза Войцеховская" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Роза Войцеховская</h3>
+  <p class="text-gray-300">Роза - скромная и вежливая женщина. Она хранит и бережёт свою единственную семейную драгоценность. Войцеховская также показана, как романтичная личность, например, предпочитая читать любовные романы.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="bekir-shakhin">
+  <img src="./img/2025-06-15_18-56-43.png" alt="Бекир Шахин" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Бекир Шахин</h3>
+  <p class="text-gray-300">Бекир - простой и вежливый мужчина, любящий свою попутчицу. Стоит отметить, что в отличие от своей попутчицы, Шахин плохо говорит на иностранном языке.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="elif-beyaz">
+  <img src="./img/2025-06-15_18-56-59.png" alt="Элиф Беяз" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Элиф Беяз</h3>
+  <p class="text-gray-300">Элиф - простая и вежливая женщина, любящая своего попутчика. Стоит отметить, что в отличие от своего попутчика, Беяз хорошо говорит на иностранном языке.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="franc">
+  <img src="./img/2025-06-15_19-13-54.png" alt="Франц Ярошевич" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Франц Ярошевич</h3>
+  <p class="text-gray-300">Франц представлен серьёзным и прямолинейным человеком. Тем не менее, Ярошевич также показывает свою человеческую сторону характера, например, сочувствуя Уинстону.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="gnevko">
+  <img src="./img/2025-06-15_19-17-53.png" alt="Гневко Вуйчик" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Гневко Вуйчик</h3>
+  <p class="text-gray-300">Гневко - грубый и подлый человек. Он пойдёт на различные способы выплатить свои долги любой ценой, даже если для этого придётся красть чужие вещи или убивать людей. Нередко, Вуйчик может вести себя импульсивно и вспыльчиво, особенно когда он находится невыгодном для себя положении.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="michail">
+  <img src="./img/2025-06-15_19-31-23.png" alt="Михал Бачко" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Михал Бачко</h3>
+  <p class="text-gray-300">Михал - таинственный и мистический старик. Он нередко может предрекать и предсказывать будущие события. В остальном же, Бачко также демонстрирует свою мудрую и добродушную сторону своего характера.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="dviga">
+  <img src="./img/2025-06-15_19-14-13.png" alt="Ядвига Стельмах" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Ядвига Стельмах</h3>
+  <p class="text-gray-300">Ядвига первично представляется перед игроком обычной и спокойной женщиной. Однако, на деле она является мазохистской и озабоченной женщиной, получающий удовольствие через унижения и страдания, о чём свидетельствуют многочисленные её предметы.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="bogdan">
+  <img src="./img/2025-06-15_19-15-18.png" alt="Богдан Горак" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Богдан Горак</h3>
+  <p class="text-gray-300">Богдан - наглый и нахальный парень. Он излишне самоуверен в своей правоте и не боится никого.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="vito">
+  <img src="./img/2025-06-15_19-15-32.png" alt="Вито Хофф" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Вито Хофф</h3>
+  <p class="text-gray-300">Вито - наглый и нахальный парень. Он излишне самоуверен и не боится никого.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="en-pe">
+  <img src="./img/2025-06-15_19-15-46.png" alt="Ён Пэ" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Ён Пэ</h3>
+  <p class="text-gray-300">Ён - тихий и спокойный человек. Сочувствует Уинстону об утрате его семьи.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="frida">
+  <img src="./img/2025-06-15_19-16-13.png" alt="Фрида Карр" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Фрида Карр</h3>
+  <p class="text-gray-300">Фрида - вежливая и учтивая женщина. Имеет широкие знания о ядерной физике и о действии работы запала.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="verner">
+  <img src="./img/2025-06-15_18-57-13.png" alt="Вернер Берзиньш" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Вернер Берзиньш</h3>
+  <p class="text-gray-300">Вернер - насмешливый человек. Ему нравится смотреть, как-то из людей терпит неудачу и он с этого смеётся. Берзиньш испытывает открытое презрением к простым пассажирам третьего класса и хочет, чтобы они каким-либо образом страдали.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="genri">
+  <img src="./img/2025-06-15_19-17-18.png" alt="Генри Кольт" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Генри Кольт</h3>
+  <p class="text-gray-300">Генри показан тактичным и прямолинейным человеком. Он крайне внимателен и легко разбирается в людях и в окружении. Тем не менее, Кольт может вести себя импульсивно и недоверчиво, как например, было показано в передаче ему письма.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="shantal">
+  <img src="./img/2025-06-15_18-56-19.png" alt="Шанталь Мураховская" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Шанталь Мураховская</h3>
+  <p class="text-gray-300">Шанталь - эксцентричная богатая дама, помешанная на еде. Однако ее пресыщенная и богатая жизнь настолько ее избаловала, что она постоянно ищет новую еду на пробу. Например, она просит пищу бедняков или опасное блюдо сопоставимое с ядовитой рыбой Фугу. В остальном, Шанталь галантна и вежлива, хотя и не без своих изъянов.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="ofi-1">
+  <img src="./img/2025-06-15_19-16-30.png" alt="Официантка" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Официантка</h3>
+  <p class="text-gray-300">Официантка представлена романтичной и мечтательной девушкой, желавшей стать актрисой. Он доверчива и наивна, что демонстрируется в том, как она доверилась Кентаро, даже несмотря на все слухи и предостережения на счёт него.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="ofi-2">
+  <img src="./img/2025-06-15_19-16-45.png" alt="Официантка" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Официантка</h3>
+  <p class="text-gray-300">Официантка - простая девушка. Переживает за то, что вагоны первого класса подверглись налёту. Ей также нравится слушать песню Кентаро.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="natan">
+  <img src="./img/2025-06-15_19-31-59.png" alt="Натан Кехлер" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Натан Кехлер</h3>
+  <p class="text-gray-300">Натан представлен весьма вежливым и харизматичным мужчиной. Однако он никогда не откажется от любых путей заработка денег, невзирая на опасность своей незаконной деятельности. Торговец имеет за собой множество связей и каналов информации, которыми он также не стесняется пользоваться ради выгоды. Вне работы, Кехлер часто показывает себя с сентиментальной и лиричной стороны.</p>
+</div>
+
+<div class="character-card bg-black p-6 rounded pixel-border" data-character="gg">
+  <img src="./img/2025-06-15_19-31-37.png" alt="Страж порядка" class="w-full h-64 object-cover object-top rounded mb-4">
+  <h3 class="text-xl text-primary mb-2">Страж порядка</h3>
+  <p class="text-gray-300">Оба стража порядка продемонстрированы, как грубые и жестокие полицейские, которые издевательски насмехаются над положением Якова или неудачной попыткой Луизы спасти своего мужа. Помимо этого, стражи порядка показаны, как агрессивные пособники режима, которые безжалостно избивают всех нарушителей (что показывает их более похожими с их первоначальным аналогом и менее профессионально серьёзными к правилам и работе в отличии с их дальнейшим аналогом). Тем не менее, стоит отметить крайний страх обоих полицейских перед их наказанием со стороны их начальства.</p>
+</div>
+</div>
+    
+  </div>
+</body>
+</html>
