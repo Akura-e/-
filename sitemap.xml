@@ -2,26 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://Beholder.com/</loc>
+    <loc>https://akura-e.github.io/-/</loc>
     <lastmod>2025-10-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
   <url>
-    <loc>https://Beholderа.com/index.html</loc>
-    <lastmod>2025-10-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://Beholderа.com/directives.html</loc>
+    <loc>https://akura-e.github.io/-/directives.html</loc>
     <lastmod>2025-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     </url>
    <url>
-    <loc>https://Beholderа.com/characters.html</loc>
+    <loc>https://akura-e.github.io/-/characters.html</loc>
     <lastmod>2025-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
