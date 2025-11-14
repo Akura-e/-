@@ -9,10 +9,22 @@
   </url>
 
   <url>
-    <loc>https://Beholderа.com/page2.html</loc>
+    <loc>https://Beholderа.com/index.html</loc>
     <lastmod>2025-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://Beholderа.com/directives.html</loc>
+    <lastmod>2025-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    </url>
+   <url>
+    <loc>https://Beholderа.com/characters.html</loc>
+    <lastmod>2025-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    </url>
 
 </urlset>
