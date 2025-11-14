@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /directives.html
-Allow: / characters.html
+Disallow: / characters.html
 Allow: / index.html
