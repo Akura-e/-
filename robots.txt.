@@ -1,3 +1,4 @@
- 	User-agent: *
-Disallow: /private/
-Allow: /
+User-agent: *
+Disallow: /directives.html
+Allow: / characters.html
+Allow: / index.html
